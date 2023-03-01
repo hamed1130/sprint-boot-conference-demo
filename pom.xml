@@ -20,17 +20,21 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<!-- This is to exclude Tomcat as the default embedded web server in Spring Boot, and then add the desired one (jetty,...) as a new dependency
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-tomcat</artifactId>
 				</exclusion>
 			</exclusions>
+			-->
 		</dependency>
+		<!-- This is to add Jetty as web server (instead of Tomcat which is default)
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jetty</artifactId>
 		</dependency>
+		-->
 
 
 		<dependency>

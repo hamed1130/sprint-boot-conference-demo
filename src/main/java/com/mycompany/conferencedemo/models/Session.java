@@ -5,27 +5,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "sessions")
+@Entity
+@Table(name = "sessions")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Session {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@Column(name = "session_id")
+    @Column(name = "session_id")
     private Long session_id;
-    //@Column(name = "session_name")
+    @Column(name = "session_name")
     private String session_name;
-    //@Column(name = "session_description")
+    @Column(name = "session_description")
     private String session_description;
-    //@Column(name = "session_length")
+    @Column(name = "session_length")
     private Integer session_length;
 
     @ManyToMany
     @JoinTable(name = "session_speakers",
-               joinColumns = @JoinColumn(name = "session_id"),
-               inverseJoinColumns = @JoinColumn(name = "speaker_id"))
+            joinColumns = @JoinColumn(name = "session_id"),
+            inverseJoinColumns = @JoinColumn(name = "speaker_id"))
     private List<Speaker> speakers;
 
     public Session() {}
+
+    public Session(Long session_id) {
+        this.session_id = session_id;
+    }
 
     public List<Speaker> getSpeakers() {
         return speakers;
@@ -65,5 +70,10 @@ public class Session {
 
     public void setSession_length(Integer session_length) {
         this.session_length = session_length;
+    }
+
+    @Override
+    public String toString() {
+        return "Sessions{" + "session_id=" + this.session_id + ", session_name='" + this.session_name + ", session_description='" + this.session_description + ", session_length='" + this.session_length;
     }
 }
